@@ -374,15 +374,12 @@ register_default_namespace() {
     else
         echo "Default namespace ${DEFAULT_NAMESPACE} already registered."
     fi
+
+    echo "Waiting for namespace cache to refresh (sleeping for 10 seconds)..."
+    sleep 10
 }
 
 add_custom_search_attributes() {
-    until temporal operator search-attribute list --namespace "${DEFAULT_NAMESPACE}"; do
-      echo "Waiting for namespace cache to refresh..."
-      sleep 1
-    done
-    echo "Namespace cache refreshed."
-
     echo "Adding Custom*Field search attributes."
     # TODO: Remove CustomStringField
 # @@@SNIPSTART add-custom-search-attributes-for-testing-command
